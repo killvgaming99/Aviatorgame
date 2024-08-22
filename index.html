@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviator Crash Casino</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Aviator Crash Casino</h1>
+        </header>
+        <main>
+            <canvas id="gameCanvas"></canvas>
+            <div class="controls">
+                <label for="balance">Balance: ₹<span id="balance">50</span></label>
+                <input type="number" id="betAmount" placeholder="Enter your bet">
+                <button id="placeBet">Place Bet</button>
+                <button id="cashOut">Cash Out</button>
+            </div>
+            <section class="history">
+                <h2>Cash-Out History</h2>
+                <ul id="historyList"></ul>
+            </section>
+        </main>
+        <div id="withdrawModal" class="modal">
+            <div class="modal-content">
+                <span class="close">×</span>
+                <h2>Withdraw Funds</h2>
+                <form id="withdrawForm">
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" required>
+                    <label for="bankAccount">Bank Account Number:</label>
+                    <input type="text" id="bankAccount" required>
+                    <label for="ifsc">IFSC Code:</label>
+                    <input type="text" id="ifsc" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                    <label for="whatsapp">WhatsApp:</label>
+                    <input type="text" id="whatsapp" required>
+                    <button type="submit">Withdraw</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
