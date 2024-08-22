@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div id="loadingScreen">
+        <div class="loader"></div>
+    </div>
+    <div class="container" style="display: none;">
         <header>
             <h1>Aviator Crash Casino</h1>
         </header>
@@ -37,8 +40,6 @@
                     <input type="text" id="ifsc" required>
                     <label for="email">Email:</label>
                     <input type="email" id="email" required>
-                    <label for="whatsapp">WhatsApp:</label>
-                    <input type="text" id="whatsapp" required>
                     <button type="submit">Withdraw</button>
                 </form>
             </div>
