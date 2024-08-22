@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const withdrawModal = document.getElementById('withdrawModal');
     const closeModal = document.querySelector('.close');
     const withdrawForm = document.getElementById('withdrawForm');
+    const loadingScreen = document.getElementById('loadingScreen');
+    const container = document.querySelector('.container');
 
     let balance = localStorage.getItem('balance') ? parseFloat(localStorage.getItem('balance')) : 50;
     let currentMultiplier = 1.00;
@@ -17,6 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameActive = false;
 
     balanceElement.textContent = balance.toFixed(2);
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            container.style.display = 'block';
+        }, 2000);
+    });
 
     balanceElement.addEventListener('click', () => {
         withdrawModal.style.display = 'block';
@@ -38,14 +47,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const bankAccount = document.getElementById('bankAccount').value;
         const ifsc = document.getElementById('ifsc').value;
         const email = document.getElementById('email').value;
-        const whatsapp = document.getElementById('whatsapp').value;
 
         const withdrawInfo = {
             fullName,
             bankAccount,
             ifsc,
-            email,
-            whatsapp
+            email
         };
 
         localStorage.setItem('withdrawInfo', JSON.stringify(withdrawInfo));
@@ -79,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentMultiplier = 1.00;
         gameActive = true;
         gameInterval = setInterval(() => {
-            currentMultiplier += 0.01;
+            currentMultiplier += currentMultiplier < 10 ? 0.01 : currentMultiplier < 50 ? 0.05 : 0.1;
             drawMultiplier(currentMultiplier);
             if (Math.random() < 0.01) { // Randomly end the game
                 clearInterval(gameInterval);
@@ -94,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.font = '30px Arial';
         ctx.fillStyle = '#ffd700';
         ctx.textAlign = 'center';
-        ctx.fillText(`Multiplier: ${multiplier.toFixed(2)}x`, gameCanvas.width / 2, gameCanvas.height / 2);
+        ctx.fillText(`${multiplier.toFixed(2)}x`, gameCanvas.width / 2, gameCanvas.height / 2);
     }
 
     function addHistory(message) {
